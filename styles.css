@@ -1,0 +1,36 @@
+html {
+  margin: 0;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+  'header header header header header header'
+  'main main main main main main'
+  'footer footer footer footer footer footer';
+  grid-template-columns: repeat(6, 1fr);
+  margin: 0 auto;
+  max-width: 1500px;
+  min-height: 100vh;
+}
+
+header {
+  border: 2px solid black;
+  display: grid;
+  justify-content: center;
+  grid-area: header;
+}
+
+main {
+  border: 2px solid black;
+  grid-area: main;
+}
+
+footer {
+  border: 2px solid black;
+  display: grid;
+  justify-content: end;
+  grid-area: footer;
+  padding-right: 20px;
+}

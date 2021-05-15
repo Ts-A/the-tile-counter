@@ -1,0 +1,1 @@
+const gameSection = document.getElementById("game-section");
