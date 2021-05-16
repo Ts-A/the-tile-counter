@@ -16,7 +16,6 @@ body {
 }
 
 header {
-  border: 2px solid black;
   display: grid;
   justify-content: center;
   grid-area: header;
@@ -27,8 +26,11 @@ main {
   grid-area: main;
 }
 
+#game-section {
+  border: 1px solid black;
+}
+
 footer {
-  border: 2px solid black;
   display: grid;
   justify-content: end;
   grid-area: footer;
