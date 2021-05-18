@@ -1,6 +1,6 @@
 const gameSection = document.querySelector("#game-section");
 
-class Tile {
+class Tiles {
   constructor(row = 5, column = 5, totalTileNumbers = 20) {
     this.row = row;
     this.column = column;
@@ -8,7 +8,8 @@ class Tile {
     this.totalTileNumbers = totalTileNumbers;
     this.tileNumbers = [];
     this.generateTileNumbers();
-  }
+    this.tileCounter = 1;
+  };
 
   generateTileNumbers = () => {
     for (let i = 1; i <= this.totalTileNumbers; ++i) this.tileNumbers.push(i);
@@ -33,7 +34,7 @@ class Tile {
         const tile = document.createElement("div");
         tile.textContent =
           this.tileNumbers[
-            (rowCount - 1) * (this.column - 1) + columnCount
+            (rowCount - 1) * this.column + (columnCount - 1)
           ].toString();
         tile.style.width = "100px";
         tile.style.height = "100px";
@@ -42,9 +43,7 @@ class Tile {
         tile.style.display = "grid";
         tile.style.justifyItems = "center";
         tile.style.alignItems = "center";
-        tile.addEventListener("click", (e) => {
-          console.log(e.target.innerText);
-        });
+        tile.addEventListener("click", this.updateTile);
         rowDivision.appendChild(tile);
       }
 
@@ -52,7 +51,21 @@ class Tile {
       gameSection.appendChild(rowDivision);
     }
   };
-}
 
-const t1 = new Tile(4, 4, 40);
+  updateTile = (e) => {
+    let text = Number(e.target.innerText);
+    if(text == this.tileCounter)
+      {
+        if(text + this.tileCount <= this.totalTileNumbers)
+          e.target.innerText = `${text + this.tileCount}`;
+        else
+          e.target.innerText= '';
+        ++this.tileCounter;
+        if(text == this.totalTileNumbers)
+            console.log("Game Over");
+      }
+  };
+};
+
+const t1 = new Tiles(4, 4, 40);
 t1.createTiles();
